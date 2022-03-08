@@ -1,0 +1,79 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid" style="margin-top: -50px;">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-8 m-10">
+            <!-- general form elements -->
+            <div class="card card-primary"  style="background-color:rgb(150, 142, 144); padding: 5ex;
+            border-radius: 20px; box-shadow: 6px 7px;">
+              <div class="card-header" align="center">
+                <h3 class="card-title" style="color: rgb(5, 109, 22);">Edit User Form</h3>
+              </div>
+              <form method="POST">
+                <style>
+                    h5{
+                        color: red;
+                    }
+                </style>
+                {% csrf_token %}
+            
+                {% for message in messages %}
+                <h4>{{ message }}</h4>
+                {% endfor %}
+                <div class="form-group">
+                    <input type="hidden" class="form-control form-control-user"
+                        name="Id" value="{{userupdate.id}}" >
+                </div>
+                <div class="form-group"><label><b>Enter First Name:</b></label>
+                    <input type="text" class="form-control form-control-user"
+                        name="First_name" style="height: 50px;"
+                        value="{{userupdate.first_name}}" required>
+                </div>
+                <div class="form-group"><label><b>Enter Last Name:</b></label>
+                    <input type="text" class="form-control form-control-user"
+                        name="Last_name" style="height: 50px;"
+                        value="{{userupdate.last_name}}" required>
+                </div>
+                <div class="form-group"><label><b>Enter Email Address:</b></label>
+                    <input type="email" class="form-control form-control-user"
+                        name="Email" style="height: 50px;"
+                        value="{{userupdate.email}}" required>
+                </div>
+      
+                <div class="form-group"><label><b>Password</b></label>
+                    <input type="password" class="form-control form-control-user"
+                        name="Password" style="height: 50px;"
+                        value="{{userupdate.password}}" required>
+                </div>
+                <div class="form-group"><label><b>Status</b></label>
+                    <input type="text" class="form-control form-control-user"
+                        name="Status" style="height: 50px;"
+                        value="{{userupdate.is_active}}" required>
+                </div>
+                      <div class="form-group">
+                        <input type="submit" value="save" class="form-control" style="background-color: rgb(19, 158, 6); color:azure" height="20px">
+                        <a class="btn btn-warning form-control" href="{% url 'userlist_url' %}">Back To List</a>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                    {% for message in messages %}
+                    {{message}}
+                    {% endfor %}
+                    </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>     
+
+{% endblock content %}

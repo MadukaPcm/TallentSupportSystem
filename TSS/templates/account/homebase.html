@@ -1,0 +1,119 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminTSS 2 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="{% static 'bower_components/morris.js/morris.css' %}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{% static 'bower_components/jvectormap/jquery-jvectormap.css' %}">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-daterangepicker/daterangepicker.css' %}">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' %}">
+
+    <style>
+      #fixedheader{
+        position: fixed;
+        width: 100%;
+      }
+      .align-self-center{
+        margin-top: 20px;
+      }
+      #signup:hover {
+        box-shadow: 5 5 7;
+        text-overflow: center;
+        background-color:transparent;
+        font-size: 20;
+        border-radius: 4px;
+      }
+
+      #signin:hover {
+        box-shadow: 5 5 7;
+        text-overflow: center;
+        background-color:transparent;
+        font-size: 20;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+
+
+<div class="wrapper">
+  <header id="fixedheader" class="main-header responsive">
+    <section id="#" class="content-header" style="background-color: rgb(20, 9, 182);">
+      <h1 style="height: 50px; font-size: 40px; color:rgb(248, 10, 121);"><b>
+        TSS
+        <small>
+          <marquee behavior="bounce" color="green" direction="right" scrollamount="20" bgcolor="white" width="64%" style="background: none; color:rgb(246, 252, 248)">
+          Homepage For Talent Support System, Welcome
+          </marquee>
+        </small></b>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'home_url' %}" style="color:rgb(247, 241, 241)"><i class="fa fa-dashboard"></i><i><b>Home</b></i></a></li>
+        <li><a href="{% url 'about_url' %}" style="color:rgb(247, 241, 241)"><i><b>About Us</b></i></a></li>
+        <li><a href="{% url 'contact_url' %}" style="color:rgb(247, 241, 241)"><i><b>Contacts</b></i></a></li>
+        <li id="signup"><a href="{% url 'register_url' %}" style="color:rgb(247, 241, 241)"><i><b>SignUp</b></i></a></li>
+        <li id="signin"><a href="{% url 'login_url' %}" style="color:rgb(247, 241, 241)"><i><b>SignIn</b></i></a></li>
+      </ol>
+      </section>
+  </header>
+    <!-- Main content -->
+    <section class="content" style="background-color: rgb(248, 241, 241);">
+    
+           
+              
+               
+                 {% block content %}
+
+                 {% endblock content %}
+                
+            
+           
+   
+
+    </section>
+    <!-- /.content -->
+  </div>
+</div>
+  <script>
+    var slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 1500); // Change image every 2 seconds
+    }
+    </script>
+  </html>

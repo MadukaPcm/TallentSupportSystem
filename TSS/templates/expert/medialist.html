@@ -1,0 +1,105 @@
+{% extends 'expert/expertbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="box" style = "background-color: rgb(172, 184, 173); color:black">
+  <div class="box-header">
+    <h2 class="box-title"><b>Table For Uploaded Media Files:</b></h2>
+    <a class="btn btn-primary pull-right" href="{% url 'uploadmedia_url' %}">
+      Upload Media Files:
+    </a>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>PROD-VIDEO</th>
+        <th>PRODUCT</th>
+        <!-- <th>USERNAME</th> -->
+        <th>TITLE</th>
+        <!-- <th>DESCRIPTION</th> -->
+        <th>DATE</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      {% for fl in data %}
+      <tr>
+        <td>
+          {% if fl.video_file %}
+            <video width="50" height="40" controls="controls">
+              <source src="{{fl.video_file.url}}" type="video/mp4">
+            </video>
+         {% endif %}
+         </td>
+
+        <td>
+          {% if fl.thumbnail %}
+            <img src="{{fl.thumbnail.url}}" width="50" height="40">
+          {% endif %}
+        </td>
+
+        <!-- <td>{{fl.user}}</td> -->
+        <td>{{fl.title}}</td>
+        <!-- <td>{{fl.description|safe}}</td> -->
+        <td>{{fl.date_created}}</td>
+
+        {% if fl.un_deleted == True %}
+          <td style="color:rgb(21, 6, 110)"><b>Non Deleted</b></td>
+        {% else %}
+          <td style="color:rgb(238, 14, 14)"><b>Deleted</b></td>
+        {% endif %}
+       
+        <td>
+          <a class="fa fa-edit btn-sm btn-primary" title="edit" href="{% url 'editmedias_urll' fl.id %}"></a>
+          <a class="fa fa-eye-slash btn-sm btn-primary" title="view" href="{% url 'viewmedias_url' fl.id %}"></a>
+          <a class="fa fa-trash btn-sm btn-danger" title="delete" href="{% url 'deletemedia_urll' %}?media_id={{fl.id}}"></a>
+        </td>
+      </tr>
+      {% endfor %}
+      <!-- data-toggle="modal" data-target="#modal-danger"  -->
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>PROD-VIDEO</th>
+        <th>PRODUCT</th>
+        <!-- <th>USERNAME</th> -->
+        <th>TITLE</th>
+        <!-- <th>DESCRIPTION</th> -->
+        <th>DATE</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.modal for deleting follower -->
+
+<div class="modal modal-danger fade" id="modal-danger">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Hello Mr(s):Admin</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are sure you want to delete Mr Frank</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline">delete</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+{% endblock content%}

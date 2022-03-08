@@ -1,0 +1,25 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <form method="post" style="border: 4px; background-color:rgb(139, 145, 139); padding:10px; border-radius: 5px;">
+                {% csrf_token %}
+                <legend class="border-bottom mb-4"><h3 style="color: blue;"><b>Assign Group permissions</b></h3></legend>
+                {{ perm | crispy }}
+                <button class="btn btn-primary btn-block mt-3 " type="submit">
+                    Save
+                </button>
+                <input type="reset" class="btn btn-primary btn-block mt-3 " value="Refresh">
+                <a class="btn btn-warning form-control" href="{% url 'grouplist_url' %}">back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

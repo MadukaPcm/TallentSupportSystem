@@ -1,0 +1,36 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mb-5">
+
+    <h3>
+        {% for message in messages %}
+        <script>
+        window.onload = function () {
+          alert("{{message}}")
+        }
+        </script>
+        {% endfor %}
+    </h3>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <form method="post" style="border: 4px; background-color:rgb(139, 145, 139); padding:10px; border-radius: 5px;"
+            enctype="multipart/form-data" >
+                {% csrf_token %}
+                <legend class="border-bottom mb-4"><h3 style="color: blue;"><b>Upadate Media Files:</b></h3></legend>
+                {{ editmedia | crispy }}
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'media_url' %}" class="btn btn-warning pull-right">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+  {% endblock content%}

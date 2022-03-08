@@ -1,0 +1,94 @@
+{% extends 'expert/expertbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="box" style = "background-color: rgb(192, 162, 191); color:black">
+  <div class="box-header">
+    <h2 class="box-title"><b>List of Supporters followed an Expert</b></h2>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>USERNAME</th>
+        <th>MEDIA FILE</th>
+        <th>FOLLOWER NAME</th>
+        <th>FOLLOWER 4N_N0</th>
+        <th>DATE</th>
+        <th>ACTION</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td>Trident</td>
+        <td>Internet
+          Explorer 4.0
+        </td>
+        <td>Win 95+</td>
+        <td> 4</td>
+        <td>X</td>
+        <td>
+          <a class="fa fa-edit btn-sm btn-primary" title="edit" href="{% url 'editfollower_urll' %}"></a>
+          <a class="fa fa-plus btn-sm btn-primary" title="respond back" href="{% url 'followsupporter_url' %}"></a>
+        
+        </td>
+      </tr>
+      <tr>
+
+        <td>Trident</td>
+        <td>Internet
+          Explorer 4.0
+        </td>
+        <td>Win 95+</td>
+        <td> 4</td>
+        <td>X</td>
+        <td>
+          <a class="fa fa-edit btn-sm btn-primary" title="edit" href="{% url 'editfollower_urll' %}"></a>
+          <a class="fa fa-plus btn-sm btn-primary" title="respond back" href="{% url 'followsupporter_url' %}"></a>
+        </td>
+      </tr>
+  
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>USERNAME</th>
+        <th>MEDIA FILE</th>
+        <th>FOLLOWER NAME</th>
+        <th>PHOLLOWER 4N_N0</th>
+        <th>DATE</th>
+        <th>ACTION</th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
+
+<!-- /.modal for deleting follower -->
+
+<div class="modal modal-danger fade" id="modal-danger">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Hello Mr(s):Admin</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are sure you want to delete Mr Frank</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline">delete</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+{% endblock content %}

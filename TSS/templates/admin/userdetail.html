@@ -1,0 +1,180 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="box" style = "background-color: rgb(192, 162, 191); color:black">
+  <div class="box-header">
+    <h2 class="box-title"><b>Table For User Informations</b></h2>
+
+    <a class="btn btn-primary pull-right" href="{% url 'adduserdata_url' %}" >
+      Add User Data
+    </a>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive">
+    <table id="example1" class="table table-bordered table-striped table-responsive{-sm|-md|-lg|-xl}">
+      <thead>
+      <tr>
+        <th>USERNAME</th>
+        <th>TALLENT</th>
+        <th>ARTIST NAME</th>
+        <!-- <th>SEX</th> -->
+        <th>PHONE NUMBER</th>
+        <th>REGION</th>
+        <!-- <th>DISTRICT</th> -->
+        <!-- <th>STREET</th> -->
+        <!-- <th>OFFICE NAME</th> -->
+        <th>DATE CREATED</th>
+        <th>FOLL_NO</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for data in userdata %}
+      <tr>
+
+        <td>{{data.user}}</td>
+        <td>{{data.Tallent.name}}</td>
+        <td>{{data.artist_name}}</td>
+        <!-- <td> {{data.sex}}</td> -->
+        <td>{{data.phone}}</td>
+        <td>{{data.region}}</td>
+        <!-- <td>{{data.district}}</td> -->
+        <!-- <td>{{data.street}}</td> -->
+        <!-- <td>{{data.office_name}}</td> -->
+        <td>{{data.date_added}}</td>
+        <td>__</td>
+
+        {% if data.un_deleted == True %}
+        <td style="color:rgb(21, 6, 110)"><b>N Deleted</b></td>
+        {% else %}
+        <td style="color:rgb(238, 14, 14)"><b>Deleted</b></td>
+        {% endif %}
+
+        <td>
+          <a class="fa fa-edit btn-sm btn-primary" title="edit" href="{% url 'edituserdetail_url' data.id %}"></a>
+          <a class="fa fa-trash btn-sm btn-danger" title="delete" href="{% url 'deleteuserdata_url' %}?userdata_id={{data.id}}"></a>
+          <!-- <button class="fa fa-trash btn-sm btn-danger" data-toggle="modal" data-target="#modal-danger" data-userlistid="frank" title="delete" ></button> -->
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>USERNAME</th>
+        <th>TALLENT</th>
+        <th>ARTIST NAME</th>
+        <!-- <th>SEX</th> -->
+        <th>PHONE NUMBER</th>
+        <th>REGION</th>
+        <!-- <th>DISTRICT</th> -->
+        <!-- <th>STREET</th> -->
+        <!-- <th>OFFICE NAME</th> -->
+        <th>DATE CREATED</th>
+        <th>FOLL_NO</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>
+
+
+<!-- /.modal  for ading user -->
+
+<div class="modal fade " id="moda-warning">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:rgb(217, 217, 230)">
+        <a href="{% url 'adduserdata_url' %}" class="btn btn-primary">
+          <span aria-hidden="true">&times;</span><b><i>ADD USER DATA.</i></b></a>
+      </div>
+      <div class="modal-body" style="background-color:rgb(243, 250, 245)">
+   
+        <form action="{% url 'adduserdata_url' %}" method="POST">
+          {% csrf_token %}
+                <div class="form-group">
+                  <input type="hidden" name="Id">
+                </div>
+                <div class="form-group">
+                  <label for="">Username</label>
+                  <input type="text" name="User" value="
+                  {% for usd in userd %}
+                    {{usd.User}}
+                  {% endfor %}
+                  " class="form-control" required style="background-color:rgb(174, 180, 180);">
+                </div>
+                <div class="form-group">
+                  <label for="">Phone Number</label>
+                  <input type="text" name="first_name" value="" class="form-control" required style="background-color:rgb(174, 180, 180);">
+                </div>
+                <div class="form-group">
+                  <label for="">Region</label>
+                   <input type="text" name="last_name" value="" class="form-control" required style="background-color:rgb(174, 180, 180);">
+              </div>
+              
+              <div class="form-group">
+                  <label for="">District</label>
+                  <input type="text" name="username" value="" class="form-control" required style="background-color:rgb(174, 180, 180);">
+                </div>
+                <div class="form-group">
+                  <label for="">Street</label>
+                  <input type="text" name="email" value="" class="form-control" required style="background-color:rgb(174, 180, 180);">
+                </div>
+                <div class="form-group">
+                  <label for="">Office Name</label>
+                  <input type="text" name="email" value="" class="form-control" style="background-color:rgb(174, 180, 180);">
+                </div>
+                <input type="submit" value="save" class="form-control" style="background-color: rgb(19, 158, 6); color:azure" height="20px"><br>
+                <!-- <a class="btn btn-warning form-control" href="{% url 'userdetail_url' %}">back</a> -->
+              </div>
+              
+      </div>
+    </form>
+
+      </div>
+     
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- /.modal for deleting user -->
+<div class="modal modal-danger fade" id="modal-danger">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Hello Mr(s):Admin</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are sure you want to delete Mr: </p>
+        <input type="text" name="id" id="user_id">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline">delete</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script>
+  $('#modal-danger').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var user_id = button.data('userlistid')
+    var modal = $(this)
+    modal.find('#user_id').val("frank")
+  })
+</script>
+{% endblock content%}

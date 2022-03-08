@@ -1,0 +1,79 @@
+{% extends 'account/homebasee.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Nested Row within Card Body -->
+    <div class="row">
+                    
+        <div class="col-md-6">
+            <div class="p-5" style="background-color:rgb(248, 30, 95); padding: 3ex;
+            border-radius: 20px; box-shadow: 6px 7px;">
+                <div class="">
+                    <h1 class="h2 text-gray-900 mb-4"><strong>TSS </strong>CREATE A NEW ACCOUNT</h1>
+                </div>
+                <form action="#" method="POST">
+                    <style>
+                        h5{
+                            color: red;
+                        }
+                    </style>
+                    {% csrf_token %}
+                
+                    {% for message in messages %}
+                    <h4>{{ message }}</h4>
+                    {% endfor %}
+                    
+                    <div class="form-group"><label><b>Enter First Name:</b></label>
+                        <input type="text" class="form-control form-control-user"
+                            name="First_name" style="height: 50px;"
+                            placeholder="Frank" required>
+                    </div>
+                    <div class="form-group"><label><b>Enter Last Name:</b></label>
+                        <input type="text" class="form-control form-control-user"
+                            name="Last_name" style="height: 50px;"
+                            placeholder="Maduka" required>
+                    </div>
+                    <div class="form-group"><label><b>Enter Email Address:</b></label>
+                        <input type="email" class="form-control form-control-user"
+                            name="Email" style="height: 50px;"
+                            placeholder="Frankmaduka@gmail.com" required>
+                    </div>
+                    <div class="form-group"><label><b>Username</b></label>
+                        <input type="text" class="form-control form-control-user"
+                            name="username" style="height: 50px;"
+                            placeholder="Maduka00" required>
+                    </div>
+                    <div class="form-group"><label><b>Enter Password:</b></label>
+                        <input type="password" class="form-control form-control-user"
+                            style="height: 50px;"
+                                name="password" placeholder="New Password" required>
+                    </div>
+                    <div class="form-group"><label><b>Confirm Password:</b></label>
+                        <input type="password" class="form-control form-control-user"
+                            style="height: 50px;"
+                                name="password1" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">User Type</label>
+                      
+                        <select name="Usergr" class="form-control" style="height: 50px;">
+                          <option value="1" required>Expert</option>
+                          <option value="2" required>Observer</option>
+                        </select>
+                      </div>
+                    <button type="submit" name="reset-btn" class="btn btn-primary col-md-12"
+                        style="height: 50px;"
+                            >Register</button>
+                    <br><br><br>
+
+                    <a href="{% url 'login_url' %}" style="color:black;">A Have An Account</a><br>
+                    <a href="{% url 'home_url' %}" style="color:black;">Back to home</a> 
+            
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

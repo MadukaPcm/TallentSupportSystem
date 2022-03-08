@@ -1,0 +1,83 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="box">
+        <!-- /.box-header -->
+        <div class="box-body">
+        
+           <!-- group permissions.....assigned to either user or group..... -->
+          <p><b><i>LIST OF PERMISSIONS ASSIGNED TO GROUP.</i></b></p>
+          <table id="example1" class="table table-bordered table-striped table-responsive{-sm|-md|-lg|-xl} pull-right" 
+          style="width:40%; border:none; background-color:white;">
+
+          {% for perm in assignedp %}
+              <tr>
+              <td>{{perm.name}}</td>
+              <td>{{perm.name}}</td>
+              <td>
+
+                  <a class="fa fa-trash btn-sm btn-primary" title="remove group permission" href="#"></a>
+              </td>
+              </tr>
+          {% endfor %}
+
+          </table>
+
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+      <div class="box">
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+       
+          <section class="sidebar">
+            <!-- <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-warning">
+                Add Tallent Type:
+              </button><hr> --><hr>
+              <h3>
+        
+                {% for message in messages %}
+                <script>
+                window.onload = function () {
+                  alert("{{message}}")
+                }
+                </script>
+                {% endfor %}
+              </h3>
+        
+            <p><b><i>LIST OF Groups</i></b></p>
+            <table id="example1" class="table table-bordered table-striped table-responsive{-sm|-md|-lg|-xl} pull-right" 
+            style="width:40%; border:none; background-color:white;">
+        
+              {% for data in group %}
+                <tr>
+                  <td>{{data.name}} </td>
+                  <td>
+                    <!-- <a  href="{% url 'deletetallent_url' data.id %}" class="fa fa-trash btn-sm btn btn-danger" title="delete"></a> -->
+                    <a class="fa fa-edit btn-sm btn-primary" title="edit group permission" href="{% url 'AssignGroupPerm_url' data.id %}"></a>
+                  </td>
+                </tr>
+              {% endfor %}
+        
+            </table>
+        
+          </section>
+        
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </div>
+    <!-- /.col -->
+  </div>
+
+{% endblock content%}

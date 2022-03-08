@@ -1,0 +1,52 @@
+{% extends 'account/homebasee.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+                      
+    <div class="col-md-6">
+        <div class="p-5 box-default" style="background-color:rgb(248, 30, 95); padding: 5ex;
+        border-radius: 20px; box-shadow: 6px 7px;">
+            <div class="text-center">
+                <h1 class="h2 text-gray-900 mb-4">TSS <strong>LOGIN</strong></h1> 
+            </div>
+            <form action="{% url 'login_url' %}" method="POST">
+                <style>
+                    h4{
+                        color: red;
+                    }
+                </style>
+                {% csrf_token %}
+                {% for message in messages %}
+                <h4>{{ message }}</h4>
+                {% endfor %}
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" 
+                        name="username" style="height: 50px;"
+                        placeholder="Namba ya kadi">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user"
+                    style="height: 50px;"
+                        name="password" placeholder="Password">
+                </div>
+                <button type="submit" name="login_btn" class="btn btn-primary col-md-12" 
+                  style="height: 50px;"
+                    >Login</button><br><br>
+                <h4>
+                    <a href="{% url 'admindashboard_url' %}" style="color:black;">go to admin</a><br/>
+                    <a href="{% url 'expertdashboard_url' %}" style="color:black;">go to expert</a><br>
+                    <a href="{% url 'customerdashboard_url' %}" style="color:black;">go to supporter</a><br>
+                    <a href="{% url 'register_url' %}" style="color:black;">register a new membership</a><br>
+                    <a href="{% url 'forgotpassword_url' %}" style="color:black;">forget password</a><br> 
+                    <a href="{% url 'home_url' %}" style="color:black;">Back to home</a>   
+                </h4>
+                </p>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+  {% endblock content %}

@@ -1,0 +1,81 @@
+{% extends 'customer/customerbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- interactive chart -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h2><b>
+            <marquee behavior="alternate" color="green" direction="right" scrollamount="20" bgcolor="white" width="100%" 
+                style="background: none; color:rgb(90, 5, 40)">
+                    HELLO: Mr Aman. A List of Experts 
+        </marquee>
+
+        </b></h2><hr>
+      </div>
+      <div class="box" style = "background-color: rgb(192, 162, 191); color:black">
+        <div class="box-header">
+          <h2 class="box-title"><b>a table showing all experts replied back</b></h2>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>USERNAME</th>
+              <th>MEDIA FILE</th>
+              <th>FOLLOWER NAME</th>
+              <th>FOLLOWER 4N_N0</th>
+              <th>DATE</th>
+              
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+      
+              <td>Trident</td>
+              <td>Internet
+                Explorer 4.0
+              </td>
+              <td>Win 95+</td>
+              <td> 4</td>
+              <td>X</td>
+            </tr>
+            <tr>
+      
+              <td>Trident</td>
+              <td>Internet
+                Explorer 4.0
+              </td>
+              <td>Win 95+</td>
+              <td> 4</td>
+              <td>X</td>
+            </tr>
+        
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>USERNAME</th>
+              <th>MEDIA FILE</th>
+              <th>FOLLOWER NAME</th>
+              <th>PHOLLOWER 4N_N0</th>
+              <th>DATE</th>
+              
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      
+      <!-- /.box-body-->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+</div>
+
+{% endblock content %}

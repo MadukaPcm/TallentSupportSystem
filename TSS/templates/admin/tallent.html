@@ -1,0 +1,96 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+{% load static %}
+
+<section class="sidebar">
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-warning">
+        Add Tallent Type:
+      </button><hr>
+      <h3>
+
+        {% for message in messages %}
+        <script>
+        window.onload = function () {
+          alert("{{message}}")
+        }
+        </script>
+        {% endfor %}
+      </h3>
+
+    <p><b><i>LIST OF TALLENTS</i></b></p>
+    <table id="example1" class="table table-bordered table-striped table-responsive{-sm|-md|-lg|-xl} pull-right" 
+    style="width:40%; border:none; background-color:white;">
+
+      {% for data in name %}
+        <tr>
+          <td>{{data.name}} </td>
+          <td>
+            <a  href="{% url 'deletetallent_url' data.id %}" class="fa fa-trash btn-sm btn btn-danger" title="delete"></a>
+          </td>
+        </tr>
+      {% endfor %}
+
+    </table>
+</section>
+
+<!-- /.modal  for ading tellent type -->
+
+<div class="modal fade " id="modal-warning">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:rgb(245, 242, 238)">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title"><b><i>Add Tallent Type:</i></b></h2>
+        </div>
+        <div class="modal-body" style="background-color:rgb(179, 179, 170)">
+     
+          <form action="{% url 'addtallent_url' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group"><label><b>Tallent Name:</b></label>
+                <input type="text" class="form-control form-control-user"
+                    name="Name" style="height: 50px;"
+                    placeholder="singer" required>
+            </div>
+            
+              <div class="form-group">  
+                <button type="submit" name="reset-btn" class="col-md-12"
+                style="height: 40px; border-radius: 7px; border-collapse: inherit; background-color:green; color:#fff;"
+                    >Add Tallent</button>
+              </div>
+        </form>
+        </div>
+       
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- /.modal for deleting tallent-->
+
+<div class="modal modal-danger fade" id="modal-danger">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Hello Mr(s):Admin</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are sure you want to delete the tallent</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <a href="{% url 'tallent_url' %}"><button type="button" class="btn btn-outline">delete</button></a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->      
+
+{% endblock content %}
